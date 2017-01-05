@@ -1,0 +1,40 @@
+{
+  "name": "andmemasin/yii2-json-form",
+
+  "type": "yii2-extension",
+
+  "dist": {
+    "url": "https://t6nnp6nn@bitbucket.org/andmemasin/yii2-json-form.git",
+    "type": "git"
+  },
+
+  "description": "The JSON form view widget for yii2",
+  "keywords": ["yii2", "pivot-table", "data", "andmemasin"],
+  "support": {
+    "issues": "https://andmemasin.eu",
+    "source": "https://bitbucket.org/andmemasin/yii2-json-form"
+
+  },
+  "authors": [
+    {
+      "name": "Tõnis Ormisson",
+      "email": "tonis@andmemasin.eu"
+    }
+  ],
+
+
+  "require": {
+    "yiisoft/yii2": "*",
+    "kartik-v/yii2-widget-select2": "@dev",
+    "kartik-v/yii2-widget-depdrop": "@dev"
+  },
+
+
+
+  "autoload": {
+    "psr-4": {
+      "andmemasin\\pivotview\\": ""
+    }
+  }
+
+}
