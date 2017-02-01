@@ -13,8 +13,6 @@ $this->registerJs(<<<JS
  var optionsArray = $ids;
  var id = '$widget->id';
  
- var optionId = 'sid';
-
  function setOptionsValues() {
     var results = {};
     for (i = 0; i < optionsArray.length; i++) {
