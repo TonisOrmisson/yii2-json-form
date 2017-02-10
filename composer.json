@@ -33,7 +33,7 @@
 
   "autoload": {
     "psr-4": {
-      "andmemasin\\pivotview\\": ""
+      "andmemasin\\jsonform\\": ""
     }
   }
 
