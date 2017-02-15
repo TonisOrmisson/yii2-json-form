@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Html;
 use yii\web\View;
+use kartik\password\PasswordInput;
 
 /* @var $widget \andmemasin\jsonform\JsonForm */
 
@@ -53,9 +54,22 @@ JS
                 }else{
                     $value = null;
                 }
+                if(isset($variable['type'])){
+                    $type = $variable['type'];
+                }else{
+                    $type = null;
+                }
             ?>
             <label class="control-label" for="<?=$id?>"><?=$label?></label>
-            <?= Html::input('text',$id,$value,$options)?>
+            <?php if($type == 'password'):?>
+            <?=PasswordInput::widget([
+                'name' => $id,
+                'value'=>$value,
+            ]);?>
+            <?php else:?>
+                <?= Html::input('text',$id,$value,$options)?>
+            <?php endif;?>
+
         </div>
 
     <?php endforeach;?>
