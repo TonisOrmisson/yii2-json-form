@@ -63,6 +63,7 @@ JS
             <label class="control-label" for="<?=$id?>"><?=$label?></label>
             <?php if($type == 'password'):?>
             <?=PasswordInput::widget([
+                'id' => $id,
                 'name' => $id,
                 'value'=>$value,
             ]);?>
