@@ -34,7 +34,7 @@ JS
 ?>
 <div id="<?=$widget->id;?>">
 <?php if(!empty($widget->variables)):?>
-    <?php foreach ($widget->variables as $id=> $variable):?>
+    <?php foreach ($widget->variables as  $id=> $variable):?>
         <div class="form-group field-survey-name required">
             <?php
 
@@ -60,7 +60,7 @@ JS
                     $type = null;
                 }
             ?>
-            <label class="control-label" for="<?=$id?>"><?=$label?></label>
+            <label class="control-label" for="<?=Html::encode($id)?>"><?=Html::encode($label)?></label>
             <?php if($type == 'password'):?>
             <?=PasswordInput::widget([
                 'id' => $id,
@@ -68,7 +68,7 @@ JS
                 'value'=>$value,
             ]);?>
             <?php else:?>
-                <?= Html::input('text',$id,$value,$options)?>
+                <?= Html::input('text',Html::encode($id),Html::encode($value),$options)?>
             <?php endif;?>
 
         </div>
