@@ -2,9 +2,10 @@
   "name": "andmemasin/yii2-json-form",
   "type": "yii2-extension",
 
-  "dist": {
+  "source": {
     "url": "https://t6nnp6nn@bitbucket.org/andmemasin/yii2-json-form.git",
-    "type": "git"
+    "type": "git",
+    "reference": "master"
   },
 
   "description": "The JSON form view widget for yii2",
