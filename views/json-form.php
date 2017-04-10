@@ -9,71 +9,74 @@ $currentData = \yii\helpers\Json::decode($widget->json);
 $ids = json_encode(array_keys($widget->variables));
 $isKeyed = json_encode($widget->isKeyed);
 $fieldName = array_keys($widget->variables)[0];
+$widgetId = $widget->id;
+
 $this->registerJs(<<<JS
 
+    function init$widgetId(jsonFieldId) {
+        var optionsArray = $ids;
+        var id = '$widget->id';
 
- var jsonFieldId = '$widget->jsonFieldId';
- var optionsArray = $ids;
- var id = '$widget->id';
- var variableKey ='$fieldName'; 
- var btnid = '$widget->id-add';
- var valueName = '$widget->fieldName';
-
-    var max_fields      = 10; //maximum input boxes allowed
-    var wrapper         = $("#$widget->id .container");
-   
-    var x = 0; //initial text box count
+        var variableKey ='$fieldName'; 
+        var valueName = '$widget->fieldName';
+        
+        var max_fields      = 10; //maximum input boxes allowed
+        var wrapper         = $('#$widget->id .container');
+        
+        var x = 0; //initial text box count
+      
+        $(wrapper).on("click",".$widget->id-add", function(e){
+            if(x < max_fields){ //max input box allowed
+                x++; //text box increment
+                var clone = $(this).closest('.row').clone();
+                clone.find('input').val('');
+                clone.appendTo(wrapper);
+            }
+        });
     
-    $(wrapper).on("click",".$widget->id-add", function(e){
-        console.log('add');
-        if(x < max_fields){ //max input box allowed
-            x++; //text box increment
-            var clone = $( ".json-form-row" ).last().clone();
-            clone.find('input').val('');
-            clone.appendTo(wrapper);
-        }
-    });
-    
-    $(wrapper).on("click",".remove_field", function(e){ //user click on remove text
-        e.preventDefault(); $(this).closest('.row').remove(); x--;
-        setOptionsValues();
-    });
-    
-    $(wrapper).on("change",".values", function(e){
-         setOptionsValues();
-    });
-    
- function setOptionsValues() {
-    var results = {};
-    var isKeyed = $isKeyed;
-    if(isKeyed){
-        for (i = 0; i < optionsArray.length; i++) {
-            var optionId = optionsArray[i];
-            var optIonValue = $("#"+optionId).val();
-            results[optionId] = optIonValue;
-            $("#"+jsonFieldId).val(JSON.stringify(results));
-            console.log('isK'+isKeyed.toString());
-        }   
-    } else{
-        results= [];
-        $('input.values').each(function(){
-            var input = $(this);
-            results.push(input.val());
-            $("#"+jsonFieldId).val(JSON.stringify(results));
-            console.log(input.val());
-            
+        $(wrapper).on("click",".$widgetId-remove_field", function(){
+            $(this).closest('.row').remove();
+            x--;
+            setOptionsValues('$widgetId',jsonFieldId);
         });
         
+        $(wrapper).on("change",".values", function(e){
+            setOptionsValues('$widgetId',jsonFieldId);
+        });
+        
+     
+
     }
- }
- 
- $("#"+id+' input').change(function() {
-     setOptionsValues();
- });
- 
- $("#"+btnid).click(function() {
- });
- 
+    
+    function setOptionsValues(id,jsonFieldId) {
+        var results = {};
+        var isKeyed = $isKeyed;
+        if(isKeyed){
+            for (i = 0; i < optionsArray.length; i++) {
+                var optionId = optionsArray[i];
+                var optIonValue = $("#"+optionId).val();
+                results[optionId] = optIonValue;
+                $("#"+jsonFieldId).val(JSON.stringify(results));
+                $("#"+jsonFieldId).val(JSON.stringify(results));
+            }   
+        } else{
+            results= [];
+            $('#'+id+' .values').each(function(){
+                var input = $(this);
+                results.push(input.val());
+                $("#"+jsonFieldId).val(JSON.stringify(results));
+                
+            });
+            
+        }
+        $("#"+jsonFieldId).trigger('change');
+    }
+
+    
+
+
+     init$widget->id('$widget->jsonFieldId');
+
 JS
     , View::POS_READY);
 
@@ -118,7 +121,7 @@ JS
                 }
                 $options['class'] = "form-control values";
             ?>
-            <div class="form-group field-survey-name required col-md-<?= ($widget->isKeyed ? '12':'8')?>">
+            <div class="form-group field-survey-name required col-md-4">
             <?php if($widget->labels):?>
                 <label class="control-label" for="<?=Html::encode($id)?>"><?=Html::encode($label)?></label>
             <?php endif;?>
@@ -134,7 +137,8 @@ JS
             </div>
             <div class="col-md-4">
                 <?php if(!$widget->isKeyed):?>
-                    <span class="btn btn-primary <?=$widget->id;?>-add" >add</span> <span class="btn btn-primary remove_field" id="<?=$widget->id;?>-remove">remove</span>
+                    <span class="btn btn-primary <?=$widget->id;?>-add" >add</span>
+                    <span class="btn btn-primary <?=$widget->id;?>-remove_field" >remove</span>
                 <?php endif;?>
             </div>
 
