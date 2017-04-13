@@ -37,18 +37,18 @@ $this->registerJs(<<<JS
         $(wrapper).on("click",".$widget->id-remove_field", function(){
             $(this).closest('.row').remove();
             x--;
-            setOptionsValues('$widget->id',jsonFieldId);
+            setOptionsValues('$widget->id',jsonFieldId,optionsArray);
         });
         
         $(wrapper).on("change",".values", function(e){
-            setOptionsValues('$widget->id',jsonFieldId);
+            setOptionsValues('$widget->id',jsonFieldId,optionsArray);
         });
         
      
 
     }
     
-    function setOptionsValues(id,jsonFieldId) {
+    function setOptionsValues(id,jsonFieldId,optionsArray) {
         var results = {};
         var isKeyed = $isKeyed;
         if(isKeyed){
@@ -71,9 +71,6 @@ $this->registerJs(<<<JS
         }
         $("#"+jsonFieldId).trigger('change');
     }
-
-    
-
 
      init$fName('$widget->jsonFieldId');
 
