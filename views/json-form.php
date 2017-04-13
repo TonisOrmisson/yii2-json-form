@@ -9,11 +9,11 @@ $currentData = \yii\helpers\Json::decode($widget->json);
 $ids = json_encode(array_keys($widget->variables));
 $isKeyed = json_encode($widget->isKeyed);
 $fieldName = array_keys($widget->variables)[0];
-$widgetId = $widget->id;
+$fName = \yii\helpers\Inflector::id2camel($widget->id);
 
 $this->registerJs(<<<JS
 
-    function init$widgetId(jsonFieldId) {
+    function init$fName(jsonFieldId) {
         var optionsArray = $ids;
         var id = '$widget->id';
 
@@ -34,14 +34,14 @@ $this->registerJs(<<<JS
             }
         });
     
-        $(wrapper).on("click",".$widgetId-remove_field", function(){
+        $(wrapper).on("click",".$widget->id-remove_field", function(){
             $(this).closest('.row').remove();
             x--;
-            setOptionsValues('$widgetId',jsonFieldId);
+            setOptionsValues('$widget->id',jsonFieldId);
         });
         
         $(wrapper).on("change",".values", function(e){
-            setOptionsValues('$widgetId',jsonFieldId);
+            setOptionsValues('$widget->id',jsonFieldId);
         });
         
      
@@ -75,7 +75,7 @@ $this->registerJs(<<<JS
     
 
 
-     init$widget->id('$widget->jsonFieldId');
+     init$fName('$widget->jsonFieldId');
 
 JS
     , View::POS_READY);
