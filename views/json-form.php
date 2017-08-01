@@ -127,9 +127,10 @@ JS
                 'id' => $id,
                 'name' => $id,
                 'value'=>$value,
+                'options'=>$options,
             ]);?>
             <?php else:?>
-                <?= \yii\bootstrap\Html::input('text',Html::encode($id),Html::encode($value),$options)?>
+                <?= Html::input('text',Html::encode($id),Html::encode($value),$options)?>
             <?php endif;?>
             </div>
             <div class="col-md-4">
