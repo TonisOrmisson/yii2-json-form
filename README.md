@@ -11,7 +11,7 @@ $variables = [
     ],
     'password'=>[
         'label' => Yii::t('app','Password'),
-        'type' => 'password',
+        'type' => JsonForm::TYPE_PASSWORD,
     ],
 ];
 

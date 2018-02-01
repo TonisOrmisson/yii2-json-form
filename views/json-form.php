@@ -1,9 +1,11 @@
 <?php
+
+use tonisormisson\jsonform\JsonForm;
 use yii\helpers\Html;
 use yii\web\View;
 use kartik\password\PasswordInput;
 
-/* @var $widget \tonisormisson\jsonform\JsonForm */
+/* @var $widget JsonForm */
 
 $currentData = \yii\helpers\Json::decode($widget->json);
 $ids = json_encode(array_keys($widget->variables));
@@ -122,7 +124,7 @@ JS
             <?php if($widget->labels):?>
                 <label class="control-label" for="<?=Html::encode($id)?>"><?=Html::encode($label)?></label>
             <?php endif;?>
-        <?php if($type == 'password'):?>
+        <?php if($type == JsonForm::TYPE_PASSWORD):?>
             <?=PasswordInput::widget([
                 'id' => $id,
                 'name' => $id,

@@ -24,6 +24,8 @@ class JsonForm extends Widget
     /** @var  boolean $labels whether we show labels or not*/
     public $labels = true;
 
+    const TYPE_PASSWORD = 'password';
+
 
 
 
