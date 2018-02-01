@@ -5,7 +5,7 @@
 use tonisormisson\jsonform\JsonForm;
 
 $jsonData = '{"username":"admin","password":"password"}';
-$varibles = [
+$variables = [
     'username'=>[
         'label' => Yii::t('app','Username'),
     ],
@@ -18,7 +18,7 @@ $varibles = [
 echo JsonForm::widget([
     'json'=>$jsonData,
     'jsonFieldId'=>'credentials',
-    'variables' => $model->getOptionVars(),
+    'variables' => $variables,
 ]); 
 
 ```
