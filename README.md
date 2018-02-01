@@ -16,7 +16,7 @@ $varibles = [
 
 <?= JsonForm::widget([
     'json'=>$jsonData,
-    'jsonFieldId'=>'collector-credentials',
+    'jsonFieldId'=>'credentials',
     'variables' => $model->getOptionVars(),
 ]); ?>
 ```
