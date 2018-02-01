@@ -16,9 +16,11 @@ $variables = [
 ];
 
 echo JsonForm::widget([
-    'json'=>$jsonData,
-    'jsonFieldId'=>'credentials',
+    'id' => 'my-id'
+    'json' => $jsonData,
+    'jsonFieldId' => 'my-credentials',
     'variables' => $variables,
+    'labels' => false,
 ]); 
 
 ```
