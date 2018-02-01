@@ -49,6 +49,10 @@ $this->registerJs(<<<JS
         $(wrapper).on("keyup",".values", function(e){
             setOptionsValues('$widget->id',jsonFieldId,optionsArray);
         });
+        
+        $('body').on("click", function(e){
+            setOptionsValues('$widget->id',jsonFieldId,optionsArray);
+        });
      
 
     }
