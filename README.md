@@ -20,5 +20,5 @@ $varibles = [
     'variables' => $model->getOptionVars(),
 ]); ?>
 ```
-#### Example outputs:
+#### Output of example above:
 ![alt text](images/example-1.png)
