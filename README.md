@@ -1,6 +1,7 @@
 ### Example usage
 
 ```
+<?php 
 use tonisormisson\jsonform\JsonForm;
 
 $jsonData = '{"username":"admin","password":"password"}';
@@ -14,11 +15,12 @@ $varibles = [
     ],
 ];
 
-<?= JsonForm::widget([
+echo JsonForm::widget([
     'json'=>$jsonData,
     'jsonFieldId'=>'credentials',
     'variables' => $model->getOptionVars(),
-]); ?>
+]); 
+
 ```
 #### Output of example above:
 ![alt text](images/example-1.png)
