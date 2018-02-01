@@ -3,7 +3,7 @@ use yii\helpers\Html;
 use yii\web\View;
 use kartik\password\PasswordInput;
 
-/* @var $widget \andmemasin\jsonform\JsonForm */
+/* @var $widget \tonisormisson\jsonform\JsonForm */
 
 $currentData = \yii\helpers\Json::decode($widget->json);
 $ids = json_encode(array_keys($widget->variables));

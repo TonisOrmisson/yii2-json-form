@@ -1,5 +1,5 @@
 <?php
-namespace andmemasin\jsonform;
+namespace tonisormisson\jsonform;
 
 use yii;
 use yii\base\Widget;

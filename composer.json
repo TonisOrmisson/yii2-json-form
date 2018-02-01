@@ -1,5 +1,5 @@
 {
-  "name": "andmemasin/yii2-json-form",
+  "name": "tonisormisson/yii2-json-form",
   "type": "yii2-extension",
 
   "description": "The JSON form view widget for yii2",
@@ -25,7 +25,7 @@
   },
   "autoload": {
     "psr-4": {
-      "andmemasin\\jsonform\\": ""
+      "tonisormisson\\jsonform\\": ""
     }
   }
 
