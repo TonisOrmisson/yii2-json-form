@@ -3,8 +3,11 @@ namespace tonisormisson\jsonform;
 
 use yii;
 use yii\base\Widget;
+
 /**
- * Created by PhpStorm.
+ * Class JsonForm
+ * @package tonisormisson\jsonform
+ * @author Tõnis Ormisson <tonis@andmemasin.eu>
  */
 class JsonForm extends Widget
 {
@@ -26,6 +29,8 @@ class JsonForm extends Widget
     public $labels = true;
 
     const TYPE_PASSWORD = 'password';
+
+    const TYPE_DATE = 'date';
 
 
 
