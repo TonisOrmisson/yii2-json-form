@@ -21,7 +21,7 @@ use kartik\date\DatePicker;
         <label class="control-label col-sm-3" for="<?= Html::encode($id) ?>"><?= Html::encode($label) ?></label>
     <?php endif; ?>
 
-    <div id="json-form-<?=$id?>" class="col-md-9">
+    <div id="json-form-<?=$id?>" class="col-sm-6">
         <?php if ($widget->labels && !$widget->isHorizontal): ?>
             <label class="control-label" for="<?= Html::encode($id) ?>"><?= Html::encode($label) ?></label>
         <?php endif; ?>
@@ -47,7 +47,7 @@ use kartik\date\DatePicker;
     </div>
 
     <?php if (!$widget->isKeyed): ?>
-        <div class="col-md-8">
+        <div class="col-sm-2">
             <span class="btn btn-primary <?= $widget->id; ?>-add">add</span>
             <span class="btn btn-primary <?= $widget->id; ?>-remove_field">remove</span>
         </div>
