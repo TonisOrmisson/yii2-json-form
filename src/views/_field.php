@@ -5,6 +5,7 @@ use tonisormisson\jsonform\JsonForm;
 use yii\helpers\Html;
 use kartik\password\PasswordInput;
 use kartik\date\DatePicker;
+use \kartik\datetime\DateTimePicker;
 
 /* @var JsonForm $widget */
 /* @var View $this */
@@ -39,6 +40,14 @@ use kartik\date\DatePicker;
                 'name' => $id,
                 'value' => $value,
                 'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                'pluginOptions' => $options,
+            ]); ?>
+        <?php elseif ($type == JsonForm::TYPE_DATETIME): ?>
+            <?= DateTimePicker::widget([
+                'id' => $id,
+                'name' => $id,
+                'value' => $value,
+                'type' => DateTimePicker::TYPE_COMPONENT_PREPEND,
                 'pluginOptions' => $options,
             ]); ?>
         <?php else: ?>

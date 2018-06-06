@@ -37,6 +37,7 @@ class JsonForm extends Widget
     const TYPE_PASSWORD = 'password';
 
     const TYPE_DATE = 'date';
+    const TYPE_DATETIME = 'datetime';
 
     const LAYOUT_HORIZONTAL = 'horizontal';
 
