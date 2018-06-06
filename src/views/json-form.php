@@ -92,7 +92,7 @@ JS
 ?>
 <div id="<?= $widget->id; ?>">
     <?php if (!empty($widget->variables)): ?>
-        <div class="container">
+        <div class="json-form form  <?=($widget->isHorizontal ? "form-horizontal" : null)?>">
             <?php foreach ($widget->values as $id => $variable): ?>
 
                 <?php

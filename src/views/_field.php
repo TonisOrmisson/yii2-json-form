@@ -16,9 +16,13 @@ use kartik\date\DatePicker;
 
 ?>
 
-<div class="row json-form-row">
-    <div class="form-group field-survey-name required col-md-4">
-        <?php if ($widget->labels): ?>
+<div class="form-group json-form-row <?=($widget->isHorizontal ? "form-horizontal" : null)?>">
+    <?php if ($widget->labels && $widget->isHorizontal): ?>
+        <label class="control-label col-sm-3" for="<?= Html::encode($id) ?>"><?= Html::encode($label) ?></label>
+    <?php endif; ?>
+
+    <div id="json-form-<?=$id?>" class="col-md-8">
+        <?php if ($widget->labels && !$widget->isHorizontal): ?>
             <label class="control-label" for="<?= Html::encode($id) ?>"><?= Html::encode($label) ?></label>
         <?php endif; ?>
 
@@ -42,12 +46,12 @@ use kartik\date\DatePicker;
         <?php endif; ?>
     </div>
 
-    <div class="col-md-4">
-        <?php if (!$widget->isKeyed): ?>
+    <?php if (!$widget->isKeyed): ?>
+        <div class="col-md-8">
             <span class="btn btn-primary <?= $widget->id; ?>-add">add</span>
             <span class="btn btn-primary <?= $widget->id; ?>-remove_field">remove</span>
-        <?php endif; ?>
-    </div>
+        </div>
+    <?php endif; ?>
 
 </div>
 

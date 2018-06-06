@@ -6,6 +6,8 @@ use yii\base\Widget;
 
 /**
  * Class JsonForm
+ * @property boolean $isHorizontal
+ *
  * @package tonisormisson\jsonform
  * @author Tõnis Ormisson <tonis@andmemasin.eu>
  */
@@ -28,10 +30,15 @@ class JsonForm extends Widget
     /** @var  boolean $labels whether we show labels or not*/
     public $labels = true;
 
+    /** @var  boolean $labels whether we show labels or not*/
+    public $layout;
+
+
     const TYPE_PASSWORD = 'password';
 
     const TYPE_DATE = 'date';
 
+    const LAYOUT_HORIZONTAL = 'horizontal';
 
 
 
@@ -56,5 +63,13 @@ class JsonForm extends Widget
         return $this->render('json-form', [
             'widget' => $this
         ]);
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsHorizontal()
+    {
+        return $this->layout === self::LAYOUT_HORIZONTAL;
     }
 }
