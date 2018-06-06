@@ -4,6 +4,7 @@ use tonisormisson\jsonform\JsonForm;
 use yii\helpers\Html;
 use yii\web\View;
 use kartik\password\PasswordInput;
+use kartik\date\DatePicker;
 
 /* @var $widget JsonForm */
 
@@ -122,13 +123,22 @@ JS
             <?php if($widget->labels):?>
                 <label class="control-label" for="<?=Html::encode($id)?>"><?=Html::encode($label)?></label>
             <?php endif;?>
-        <?php if($type == JsonForm::TYPE_PASSWORD):?>
-            <?=PasswordInput::widget([
-                'id' => $id,
-                'name' => $id,
-                'value'=>$value,
-                'options'=>$options,
-            ]);?>
+
+            <?php if($type == JsonForm::TYPE_PASSWORD):?>
+                <?=PasswordInput::widget([
+                    'id' => $id,
+                    'name' => $id,
+                    'value'=>$value,
+                    'options'=>$options,
+                ]);?>
+            <?php elseif($type == JsonForm::TYPE_DATE):?>
+                <?= DatePicker::widget([
+                    'id' => $id,
+                    'name' => $id,
+                    'value'=>$value,
+                    'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                    'pluginOptions' => $options,
+                ]);?>
             <?php else:?>
                 <?= Html::input('text', Html::encode($id), Html::encode($value), $options)?>
             <?php endif;?>
