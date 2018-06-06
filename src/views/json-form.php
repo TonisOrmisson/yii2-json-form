@@ -6,7 +6,8 @@ use yii\web\View;
 use kartik\password\PasswordInput;
 use kartik\date\DatePicker;
 
-/* @var $widget JsonForm */
+/* @var JsonForm $widget */
+/* @var View $this */
 
 $currentData = \yii\helpers\Json::decode($widget->json);
 $ids = json_encode(array_keys($widget->variables));
@@ -93,64 +94,39 @@ JS
 <?php if(!empty($widget->variables)):?>
     <div class="container">
     <?php foreach ($widget->values as  $id=> $variable):?>
-        <div class="row json-form-row">
 
-            <?php
-                $label = (isset($variable['label']) ? $label = $variable['label'] : $id);
+        <?php
+        $label = (isset($variable['label']) ? $label = $variable['label'] : $id);
 
-                if(!$widget->isKeyed){
-                    $label = array_values($widget->variables)[0]['label'].' '.(intval($id)+1);
-                }
+        if(!$widget->isKeyed){
+            $label = array_values($widget->variables)[0]['label'].' '.(intval($id)+1);
+        }
 
-                $options['id'] = $id;
-                //$options['name'] = $widget->fieldName;
+        $options['id'] = $id;
+        //$options['name'] = $widget->fieldName;
 
-                if(isset($variable['options'])){
-                    $options = array_merge($options, $variable['options']);
-                }
+        if(isset($variable['options'])){
+            $options = array_merge($options, $variable['options']);
+        }
 
-                $value = (isset($currentData[$id]) ? $currentData[$id] : null);
-                $type = (isset($variable['type']) ? $variable['type'] : null);
+        $value = (isset($currentData[$id]) ? $currentData[$id] : null);
+        $type = (isset($variable['type']) ? $variable['type'] : null);
 
-                if(!$widget->isKeyed){
-                    $id = $id."[0]";
-                }
+        if(!$widget->isKeyed){
+            $id = $id."[0]";
+        }
 
-                $options['class'] = "form-control values";
+        $options['class'] = "form-control values";
+        ?>
 
-            ?>
-            <div class="form-group field-survey-name required col-md-4">
-            <?php if($widget->labels):?>
-                <label class="control-label" for="<?=Html::encode($id)?>"><?=Html::encode($label)?></label>
-            <?php endif;?>
-
-            <?php if($type == JsonForm::TYPE_PASSWORD):?>
-                <?=PasswordInput::widget([
-                    'id' => $id,
-                    'name' => $id,
-                    'value'=>$value,
-                    'options'=>$options,
-                ]);?>
-            <?php elseif($type == JsonForm::TYPE_DATE):?>
-                <?= DatePicker::widget([
-                    'id' => $id,
-                    'name' => $id,
-                    'value'=>$value,
-                    'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-                    'pluginOptions' => $options,
-                ]);?>
-            <?php else:?>
-                <?= Html::input('text', Html::encode($id), Html::encode($value), $options)?>
-            <?php endif;?>
-            </div>
-            <div class="col-md-4">
-                <?php if(!$widget->isKeyed):?>
-                    <span class="btn btn-primary <?=$widget->id;?>-add" >add</span>
-                    <span class="btn btn-primary <?=$widget->id;?>-remove_field" >remove</span>
-                <?php endif;?>
-            </div>
-
-        </div>
+        <?= $this->render('_field',[
+            'widget' => $widget,
+            'type' => $type,
+            'id' => $id,
+            'label' => $label,
+            'value' => $value,
+            'options' => $options,
+        ]);?>
 
     <?php endforeach;?>
     </div>
