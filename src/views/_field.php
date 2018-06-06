@@ -16,7 +16,7 @@ use kartik\date\DatePicker;
 
 ?>
 
-<div class="form-group json-form-row <?=($widget->isHorizontal ? "form-horizontal" : null)?>">
+<div class="form-group json-form-row <?=($widget->isHorizontal ? "form-horizontal" : null)?> container">
     <?php if ($widget->labels && $widget->isHorizontal): ?>
         <label class="control-label col-sm-3" for="<?= Html::encode($id) ?>"><?= Html::encode($label) ?></label>
     <?php endif; ?>

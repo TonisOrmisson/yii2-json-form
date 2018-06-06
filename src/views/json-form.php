@@ -90,7 +90,7 @@ JS
 
 
 ?>
-<div id="<?= $widget->id; ?>" class="row">
+<div id="<?= $widget->id;?>">
     <?php if (!empty($widget->variables)): ?>
         <?php foreach ($widget->values as $id => $variable): ?>
 
