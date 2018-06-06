@@ -95,12 +95,8 @@ JS
         <div class="row json-form-row">
 
             <?php
+                $label = (isset($variable['label']) ? $label = $variable['label'] : $id);
 
-                if(isset($variable['label'])){
-                    $label = $variable['label'];
-                }else{
-                    $label = $id;
-                }
                 if(!$widget->isKeyed){
                     $label = array_values($widget->variables)[0]['label'].' '.(intval($id)+1);
                 }
@@ -109,23 +105,18 @@ JS
                 //$options['name'] = $widget->fieldName;
 
                 if(isset($variable['options'])){
-                    $options = array_merge($options,$variable['options']);
+                    $options = array_merge($options, $variable['options']);
                 }
 
-                if(isset($currentData[$id])){
-                    $value = $currentData[$id];
-                }else{
-                    $value = null;
-                }
-                if(isset($variable['type'])){
-                    $type = $variable['type'];
-                }else{
-                    $type = null;
-                }
+                $value = (isset($currentData[$id]) ? $currentData[$id] : null);
+                $type = (isset($variable['type']) ? $variable['type'] : null);
+
                 if(!$widget->isKeyed){
                     $id = $id."[0]";
                 }
+
                 $options['class'] = "form-control values";
+
             ?>
             <div class="form-group field-survey-name required col-md-4">
             <?php if($widget->labels):?>
@@ -139,7 +130,7 @@ JS
                 'options'=>$options,
             ]);?>
             <?php else:?>
-                <?= Html::input('text',Html::encode($id),Html::encode($value),$options)?>
+                <?= Html::input('text', Html::encode($id), Html::encode($value), $options)?>
             <?php endif;?>
             </div>
             <div class="col-md-4">

@@ -21,6 +21,7 @@ class JsonForm extends Widget
 
     /** @var array input values  */
     public $values = [];
+
     /** @var  boolean $labels whether we show labels or not*/
     public $labels = true;
 
