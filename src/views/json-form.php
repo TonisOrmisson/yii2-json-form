@@ -90,46 +90,46 @@ JS
 
 
 ?>
-<div id="<?=$widget->id;?>">
-<?php if(!empty($widget->variables)):?>
-    <div class="container">
-    <?php foreach ($widget->values as  $id=> $variable):?>
+<div id="<?= $widget->id; ?>">
+    <?php if (!empty($widget->variables)): ?>
+        <div class="container">
+            <?php foreach ($widget->values as $id => $variable): ?>
 
-        <?php
-        $label = (isset($variable['label']) ? $label = $variable['label'] : $id);
+                <?php
+                $label = (isset($variable['label']) ? $label = $variable['label'] : $id);
 
-        if(!$widget->isKeyed){
-            $label = array_values($widget->variables)[0]['label'].' '.(intval($id)+1);
-        }
+                if (!$widget->isKeyed) {
+                    $label = array_values($widget->variables)[0]['label'] . ' ' . (intval($id) + 1);
+                }
 
-        $options['id'] = $id;
-        //$options['name'] = $widget->fieldName;
+                $options['id'] = $id;
+                //$options['name'] = $widget->fieldName;
 
-        if(isset($variable['options'])){
-            $options = array_merge($options, $variable['options']);
-        }
+                if (isset($variable['options'])) {
+                    $options = array_merge($options, $variable['options']);
+                }
 
-        $value = (isset($currentData[$id]) ? $currentData[$id] : null);
-        $type = (isset($variable['type']) ? $variable['type'] : null);
+                $value = (isset($currentData[$id]) ? $currentData[$id] : null);
+                $type = (isset($variable['type']) ? $variable['type'] : null);
 
-        if(!$widget->isKeyed){
-            $id = $id."[0]";
-        }
+                if (!$widget->isKeyed) {
+                    $id = $id . "[0]";
+                }
 
-        $options['class'] = "form-control values";
-        ?>
+                $options['class'] = "form-control values";
+                ?>
 
-        <?= $this->render('_field',[
-            'widget' => $widget,
-            'type' => $type,
-            'id' => $id,
-            'label' => $label,
-            'value' => $value,
-            'options' => $options,
-        ]);?>
+                <?= $this->render('_field', [
+                    'widget' => $widget,
+                    'type' => $type,
+                    'id' => $id,
+                    'label' => $label,
+                    'value' => $value,
+                    'options' => $options,
+                ]); ?>
 
-    <?php endforeach;?>
-    </div>
-<?php endif;?>
+            <?php endforeach; ?>
+        </div>
+    <?php endif; ?>
 
 </div>

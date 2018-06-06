@@ -1,17 +1,18 @@
 {
   "name": "tonisormisson/yii2-json-form",
   "type": "yii2-extension",
-
   "description": "The JSON form view widget for yii2",
-  "keywords": ["yii2", "data", "andmemasin"],
+  "keywords": [
+    "yii2",
+    "data",
+    "andmemasin"
+  ],
   "authors": [
     {
       "name": "Tõnis Ormisson",
       "email": "tonis@andmemasin.eu"
     }
   ],
-
-
   "require": {
     "yiisoft/yii2": "~2.0.5",
     "kartik-v/yii2-widget-select2": "~2.1.0",
@@ -29,5 +30,4 @@
       "tonisormisson\\jsonform\\": "src"
     }
   }
-
 }
