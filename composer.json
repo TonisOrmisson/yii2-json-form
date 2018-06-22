@@ -30,5 +30,12 @@
     "psr-4": {
       "tonisormisson\\jsonform\\": "src"
     }
-  }
+  },
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://asset-packagist.org"
+    }
+  ]
+
 }
