@@ -30,3 +30,26 @@ echo Html::textarea('my-credentials-input-field','', ['id' => 'my-credentials-in
 ```
 #### Output of example above:
 ![alt text](images/example-1.png)
+
+
+### Non keyed version
+```
+<?php 
+use tonisormisson\jsonform\JsonForm;
+
+$jsonData = '["foo", "bar", "bazinga"]';
+
+echo JsonForm::widget([
+    'id' => 'my-id',
+    'json' => $jsonData,
+    'jsonFieldId' => 'my-credentials-input-field',
+    'isKeyed' => false,
+]);
+
+// the filed where the changed json will be stored
+// hide this !!
+echo Html::textarea('my-credentials-input-field','', ['id' => 'my-credentials-input-field']);
+
+```
+![alt text](images/example-2.png)
+
