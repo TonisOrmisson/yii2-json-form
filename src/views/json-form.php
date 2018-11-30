@@ -27,10 +27,10 @@ $this->registerJs(<<<JS
         var variableKey ='$fieldName'; 
         var valueName = '$widget->fieldName';
         
-        var max_fields      = 10; //maximum input boxes allowed
+        var max_fields      = $widget->maxFieldsCount; //maximum input boxes allowed
         var wrapper         = $('#$widget->id');
         
-        var x = 0; //initial text box count
+        var x = $('#'+id+' ' + rowClass).length; //initial text box count
       
         $(wrapper).on("click",".$widget->id-add", function(e){
             if(x < max_fields){ //max input box allowed

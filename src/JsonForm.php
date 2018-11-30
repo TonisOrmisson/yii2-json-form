@@ -33,6 +33,9 @@ class JsonForm extends Widget
     /** @var  boolean $labels whether we show labels or not*/
     public $layout;
 
+    /** @var int $maxFieldsCount Maximum number fo fields */
+    public $maxFieldsCount = 10;
+
 
     const TYPE_PASSWORD = 'password';
 
