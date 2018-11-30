@@ -16,16 +16,16 @@ $variables = [
 ];
 
 echo JsonForm::widget([
-    'id' => 'my-id'
+    'id' => 'my-id',
     'json' => $jsonData,
     'jsonFieldId' => 'my-credentials-input-field',
     'variables' => $variables,
     'labels' => false,
-]); 
+]);
 
 // the filed where the changed json will be stored
 // hide this !!
-<textarea cols="80" title="test" type="text" id="my-credentials-input-field"/></textarea>
+echo Html::textarea('my-credentials-input-field','', ['id' => 'my-credentials-input-field']);
 
 ```
 #### Output of example above:
