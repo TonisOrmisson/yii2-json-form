@@ -19,7 +19,7 @@ class JsonForm extends Widget
     /** @var string $fieldName if no value names are specified we'll use this as default */
     public $fieldName = 'jsonForm-values';
     /** @var  boolean $isKeyed Whether the input fields are keyed or not. If not keyed, we can use dynamic adding */
-    public $isKeyed;
+    public $isKeyed = true;
 
     /** @var array|string input variables  */
     public $variables = [];
@@ -45,6 +45,14 @@ class JsonForm extends Widget
 
     public function run()
     {
+        if (!$this->isKeyed && !empty($this->json)) {
+            $this->variables = yii\helpers\Json::decode($this->json);
+        }
+        if (!$this->isKeyed) {
+            $this->labels = false;
+        }
+
+        $this->values = $this->variables;
         //if single string, then use name as key as well as label
         if(!is_array($this->variables)){
             $this->isKeyed = false;
@@ -52,14 +60,9 @@ class JsonForm extends Widget
                 'label'=>$this->variables,
             ]];
             $values = yii\helpers\Json::decode($this->json);
-            if($values){
+            if($values) {
                 $this->values = $values;
-            }else{
-                $this->values = $this->variables;
             }
-        }else {
-            $this->isKeyed = true;
-            $this->values = $this->variables;
         }
         return $this->render('json-form', [
             'widget' => $this

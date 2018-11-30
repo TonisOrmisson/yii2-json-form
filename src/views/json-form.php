@@ -98,7 +98,7 @@ JS
             $label = (isset($variable['label']) ? $label = $variable['label'] : $id);
 
             if (!$widget->isKeyed) {
-                $label = array_values($widget->variables)[0]['label'] . ' ' . (intval($id) + 1);
+                $label = "";
             }
 
             $options['id'] = $id;
