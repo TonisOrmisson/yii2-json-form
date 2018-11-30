@@ -115,7 +115,7 @@ JS
             $type = (isset($variable['type']) ? $variable['type'] : null);
 
             if (!$widget->isKeyed) {
-                $id = $id . "[0]";
+                $id = $widget->nonKeyedId($id);
             }
 
             $options['class'] = "form-control values";

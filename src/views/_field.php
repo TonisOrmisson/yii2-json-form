@@ -19,10 +19,10 @@ use \kartik\datetime\DateTimePicker;
 
 <div class="form-group json-form-row <?=($widget->isHorizontal ? "form-horizontal" : null)?> container">
     <?php if ($widget->labels && $widget->isHorizontal): ?>
-        <label class="control-label col-sm-3" for="<?= Html::encode($id) ?>"><?= Html::encode($label) ?></label>
+        <label class="control-label col-sm-<?=$widget->labelsWidth?>" for="<?= Html::encode($id) ?>"><?= Html::encode($label) ?></label>
     <?php endif; ?>
 
-    <div id="json-form-<?=$id?>" class="col-sm-6">
+    <div id="json-form-<?=$id?>" class="col-sm-<?=$widget->contentWidth?>">
         <?php if ($widget->labels && !$widget->isHorizontal): ?>
             <label class="control-label" for="<?= Html::encode($id) ?>"><?= Html::encode($label) ?></label>
         <?php endif; ?>
@@ -59,6 +59,15 @@ use \kartik\datetime\DateTimePicker;
         <div class="col-sm-2">
             <span class="btn btn-primary <?= $widget->id; ?>-add">add</span>
             <span class="btn btn-primary <?= $widget->id; ?>-remove_field">remove</span>
+        </div>
+    <?php endif; ?>
+
+    <?php if ($widget->hasExtraContent): ?>
+        <div id="<?="jsonform-extra-conttent-{$widget->id}-$id"?>" class="col-sm-<?= $widget->getHasExtraContentWidth(); ?>">
+            <?php if(is_string($widget->extraContent)):?>
+                <?= $widget->encodeExtraContent ? Html::encode($widget->extraContent) : $widget->extraContent; ?>
+            <?php endif; ?>
+            <?= $widget->encodeExtraContent ? Html::encode($widget->extraContent[$id]) : $widget->extraContent[$id]; ?>
         </div>
     <?php endif; ?>
 

@@ -36,6 +36,21 @@ class JsonForm extends Widget
     /** @var int $maxFieldsCount Maximum number fo fields */
     public $maxFieldsCount = 10;
 
+    /** @var int $contentWidth bootstrap col width for row content */
+    public $contentWidth = 6;
+
+    /** @var int $labelsWidth bootstrap col width for row labels if horizontal layout*/
+    public $labelsWidth = 3;
+
+    public $hasExtraContent = false;
+
+    private $extraContentWidth = 0;
+
+    /** @var string[] */
+    public $extraContent = [];
+
+    public $encodeExtraContent = true;
+
 
     const TYPE_PASSWORD = 'password';
 
@@ -44,15 +59,29 @@ class JsonForm extends Widget
 
     const LAYOUT_HORIZONTAL = 'horizontal';
 
+    const NON_KEYED_ID_SUFFIX = "[0]";
+
 
 
     public function run()
     {
+
         if (!$this->isKeyed && !empty($this->json)) {
             $this->variables = yii\helpers\Json::decode($this->json);
         }
         if (!$this->isKeyed) {
             $this->labels = false;
+        }
+
+        if (!$this->isKeyed) {
+            $this->contentWidth = 8;
+        }
+
+        if ($this->hasExtraContent) {
+            $this->extraContentWidth = 8 - $this->contentWidth;
+            if ($this->labels) {
+                $this->extraContentWidth -= $this->labelsWidth;
+            }
         }
 
         $this->values = $this->variables;
@@ -78,5 +107,13 @@ class JsonForm extends Widget
     public function getIsHorizontal()
     {
         return $this->layout === self::LAYOUT_HORIZONTAL;
+    }
+
+    public function getHasExtraContentWidth() {
+        return $this->extraContentWidth;
+    }
+
+    public function nonKeyedId($id) {
+        return $id . self::NON_KEYED_ID_SUFFIX;
     }
 }
