@@ -18,28 +18,33 @@ $fName = \yii\helpers\Inflector::id2camel($widget->id);
 $this->registerJs(<<<JS
 
     function init$fName(jsonFieldId) {
+        setOptionsValues('$widget->id',jsonFieldId,optionsArray);
+
         var optionsArray = $ids;
         var id = '$widget->id';
+        var rowClass = '.json-form-row';
 
         var variableKey ='$fieldName'; 
         var valueName = '$widget->fieldName';
         
         var max_fields      = 10; //maximum input boxes allowed
-        var wrapper         = $('#$widget->id .container');
+        var wrapper         = $('#$widget->id');
         
         var x = 0; //initial text box count
       
         $(wrapper).on("click",".$widget->id-add", function(e){
             if(x < max_fields){ //max input box allowed
                 x++; //text box increment
-                var clone = $(this).closest('.row').clone();
+                var clone = $(this).closest(rowClass).clone();
                 clone.find('input').val('');
+            console.log(clone);
                 clone.appendTo(wrapper);
             }
         });
     
         $(wrapper).on("click",".$widget->id-remove_field", function(){
-            $(this).closest('.row').remove();
+            console.log($(this).closest(rowClass));
+            $(this).closest(rowClass).remove();
             x--;
             setOptionsValues('$widget->id',jsonFieldId,optionsArray);
         });
