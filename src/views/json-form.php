@@ -37,13 +37,11 @@ $this->registerJs(<<<JS
                 x++; //text box increment
                 var clone = $(this).closest(rowClass).clone();
                 clone.find('input').val('');
-            console.log(clone);
                 clone.appendTo(wrapper);
             }
         });
     
         $(wrapper).on("click",".$widget->id-remove_field", function(){
-            console.log($(this).closest(rowClass));
             $(this).closest(rowClass).remove();
             x--;
             setOptionsValues('$widget->id',jsonFieldId,optionsArray);
