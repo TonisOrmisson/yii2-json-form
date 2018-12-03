@@ -18,7 +18,6 @@ $fName = \yii\helpers\Inflector::id2camel($widget->id);
 $this->registerJs(<<<JS
 
     function init$fName(jsonFieldId) {
-        setOptionsValues('$widget->id',jsonFieldId,optionsArray);
 
         var optionsArray = $ids;
         var id = '$widget->id';
@@ -31,6 +30,7 @@ $this->registerJs(<<<JS
         var wrapper         = $('#$widget->id');
         
         var x = $('#'+id+' ' + rowClass).length; //initial text box count
+        setOptionsValues('$widget->id',jsonFieldId, optionsArray);
       
         $(wrapper).on("click",".$widget->id-add", function(e){
             if(x < max_fields){ //max input box allowed
