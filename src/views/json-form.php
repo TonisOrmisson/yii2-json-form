@@ -95,8 +95,7 @@ JS
 ?>
 <div id="<?= $widget->id;?>">
     <?php if (!empty($widget->variables)): ?>
-        <?php foreach ($widget->values as $id => $variable): ?>
-
+        <?php foreach ($widget->variables as $id => $variable): ?>
             <?php
             $label = (isset($variable['label']) ? $label = $variable['label'] : $id);
 
