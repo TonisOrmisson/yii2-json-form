@@ -67,7 +67,6 @@ use \kartik\datetime\DateTimePicker;
             <?php if(is_string($widget->extraContent)):?>
                 <?= $widget->encodeExtraContent ? Html::encode($widget->extraContent) : $widget->extraContent; ?>
             <?php endif; ?>
-            <?= $widget->encodeExtraContent ? Html::encode($widget->extraContent[$id]) : $widget->extraContent[$id]; ?>
         </div>
     <?php endif; ?>
 
