@@ -14,12 +14,12 @@
     }
   ],
   "require": {
-    "yiisoft/yii2": "~2.0.5",
-    "kartik-v/yii2-widget-select2": "~2.1.0",
-    "kartik-v/yii2-widget-depdrop": "~1.0.4",
-    "kartik-v/yii2-password": "~1.5.3",
-    "kartik-v/yii2-widget-datepicker": "~1.4.0",
-    "kartik-v/yii2-widget-datetimepicker": "~1.4.0"
+    "yiisoft/yii2": "^2.0.5",
+    "kartik-v/yii2-widget-select2": "^2.1.0",
+    "kartik-v/yii2-widget-depdrop": "^1.0.4",
+    "kartik-v/yii2-password": "^1.5.3",
+    "kartik-v/yii2-widget-datepicker": "^1.4.0",
+    "kartik-v/yii2-widget-datetimepicker": "^1.4.0"
   },
   "extra": {
     "branch-alias": {
