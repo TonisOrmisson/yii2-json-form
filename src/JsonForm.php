@@ -73,7 +73,7 @@ class JsonForm extends Widget
             $this->labels = false;
         }
 
-        if (!$this->isKeyed) {
+        if (!$this->isKeyed and empty($this->contentWidth)) {
             $this->contentWidth = 8;
         }
 

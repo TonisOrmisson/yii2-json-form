@@ -15,9 +15,10 @@ use \kartik\datetime\DateTimePicker;
 /* @var string $label */
 /* @var array $options */
 
+$buttonsWidth = 12 - $widget->contentWidth;
 ?>
 
-<div class="form-group json-form-row <?=($widget->isHorizontal ? "form-horizontal" : null)?> container">
+<div class="form-group row json-form-row <?=($widget->isHorizontal ? "form-horizontal" : null)?> container">
     <?php if ($widget->labels && $widget->isHorizontal): ?>
         <label class="control-label col-sm-<?=$widget->labelsWidth?>" for="<?= Html::encode($id) ?>"><?= Html::encode($label) ?></label>
     <?php endif; ?>
@@ -56,7 +57,7 @@ use \kartik\datetime\DateTimePicker;
     </div>
 
     <?php if (!$widget->isKeyed): ?>
-        <div class="col-sm-2">
+        <div class="col-sm-<?=$buttonsWidth?>">
             <span class="btn btn-primary <?= $widget->id; ?>-add">add</span>
             <span class="btn btn-primary <?= $widget->id; ?>-remove_field">remove</span>
         </div>
