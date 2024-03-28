@@ -101,13 +101,20 @@ JS
             if (!$widget->isKeyed) {
                 $label = "";
             }
+            $select = $variable['select'] ?? [];
+            $pluginOptions = $variable['pluginOptions'] ?? [];
+            $options = $variable['options'] ?? [];
 
-            $options['id'] = $id;
-            //$options['name'] = $widget->fieldName;
 
-            if (isset($variable['options'])) {
-                $options = array_merge($options, $variable['options']);
+            if(empty($pluginOptions)) {
+                $pluginOptions['id'] = $id;
+                // old config
+                if (isset($variable['options'])) {
+                    $pluginOptions = array_merge($pluginOptions, $variable['options']);
+                }
+                $pluginOptions['class'] = "form-control values";
             }
+
 
             $value = (isset($currentData[$id]) ? $currentData[$id] : null);
             $type = (isset($variable['type']) ? $variable['type'] : null);
@@ -116,7 +123,6 @@ JS
                 $id = $widget->nonKeyedId($id);
             }
 
-            $options['class'] = "form-control values";
             ?>
 
             <?= $this->render('_field', [
@@ -126,6 +132,8 @@ JS
                 'label' => $label,
                 'value' => $value,
                 'options' => $options,
+                'select' => $select,
+                'pluginOptions' => $pluginOptions,
             ]); ?>
 
         <?php endforeach; ?>

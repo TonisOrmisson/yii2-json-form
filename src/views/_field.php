@@ -43,7 +43,7 @@ $buttonsWidth = 12 - $widget->contentWidth;
                 'name' => $id,
                 'value' => $value,
                 'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-                'pluginOptions' => $options,
+                'pluginOptions' => $pluginOptions,
             ]); ?>
         <?php elseif ($type == JsonForm::TYPE_DATETIME): ?>
             <?= DateTimePicker::widget([
@@ -51,12 +51,13 @@ $buttonsWidth = 12 - $widget->contentWidth;
                 'name' => $id,
                 'value' => $value,
                 'type' => DateTimePicker::TYPE_COMPONENT_PREPEND,
-                'pluginOptions' => $options,
+                'pluginOptions' => $pluginOptions,
             ]); ?>
         <?php elseif ($type == JsonForm::TYPE_SELECT2): ?>
             <?= \kartik\select2\Select2::widget([
                 'id' => $id,
                 'name' => $id,
+                'value' => $value,
                 'data' => $select,
                 'options' => $options,
                 'pluginOptions' => $pluginOptions
