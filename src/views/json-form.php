@@ -1,41 +1,40 @@
 <?php
 
 use tonisormisson\jsonform\JsonForm;
-use yii\helpers\Html;
+use yii\helpers\Inflector;
+use yii\helpers\Json;
 use yii\web\View;
-use kartik\password\PasswordInput;
-use kartik\date\DatePicker;
 
-/* @var JsonForm $widget */
-/* @var View $this */
+/** @var JsonForm $widget */
+/** @var View $this */
 
-$currentData = \yii\helpers\Json::decode($widget->json);
+$currentData = Json::decode($widget->json);
 $ids = json_encode(array_keys($widget->variables));
 $isKeyed = json_encode($widget->isKeyed);
 $fieldName = array_keys($widget->variables)[0];
-$fName = \yii\helpers\Inflector::id2camel($widget->id);
+$fName = Inflector::id2camel($widget->id);
 
 $this->registerJs(<<<JS
 
     function init$fName(jsonFieldId) {
 
-        var optionsArray = $ids;
-        var id = '$widget->id';
-        var rowClass = '.json-form-row';
+        let optionsArray = $ids;
+        let id = '$widget->id';
+        let rowClass = '.json-form-row';
 
-        var variableKey ='$fieldName'; 
-        var valueName = '$widget->fieldName';
+        let variableKey ='$fieldName'; 
+        let valueName = '$widget->fieldName';
         
-        var max_fields      = $widget->maxFieldsCount; //maximum input boxes allowed
-        var wrapper         = $('#$widget->id');
+        let max_fields      = $widget->maxFieldsCount; //maximum input boxes allowed
+        let wrapper         = $('#$widget->id');
         
-        var x = $('#'+id+' ' + rowClass).length; //initial text box count
+        let x = $('#'+id+' ' + rowClass).length; //initial text box count
         setOptionsValues('$widget->id',jsonFieldId, optionsArray);
       
         $(wrapper).on("click",".$widget->id-add", function(e){
             if(x < max_fields){ //max input box allowed
                 x++; //text box increment
-                var clone = $(this).closest(rowClass).clone();
+                let clone = $(this).closest(rowClass).clone();
                 clone.find('input').val('');
                 clone.appendTo(wrapper);
             }
@@ -63,12 +62,12 @@ $this->registerJs(<<<JS
     }
     
     function setOptionsValues(id,jsonFieldId,optionsArray) {
-        var results = {};
-        var isKeyed = $isKeyed;
+        let results = {};
+        let isKeyed = $isKeyed;
         if(isKeyed){
             for (i = 0; i < optionsArray.length; i++) {
-                var optionId = optionsArray[i];
-                var optIonValue = $("#"+optionId).val();
+                let optionId = optionsArray[i];
+                let optIonValue = $("#"+optionId).val();
                 results[optionId] = optIonValue;
                 $("#"+jsonFieldId).val(JSON.stringify(results));
                 $("#"+jsonFieldId).val(JSON.stringify(results));

@@ -1,8 +1,8 @@
 <?php
 namespace tonisormisson\jsonform;
 
-use yii;
 use yii\base\Widget;
+use yii\helpers\Json;
 
 /**
  * Class JsonForm
@@ -46,13 +46,15 @@ class JsonForm extends Widget
 
     private $extraContentWidth = 0;
 
-    /** @var string[] */
+    /** @var string[]|string|\Closure */
     public $extraContent = [];
 
     public $encodeExtraContent = true;
 
 
     const TYPE_PASSWORD = 'password';
+
+    const TYPE_SELECT2 = 'select2';
 
     const TYPE_DATE = 'date';
     const TYPE_DATETIME = 'datetime';
@@ -62,12 +64,11 @@ class JsonForm extends Widget
     const NON_KEYED_ID_SUFFIX = "[0]";
 
 
-
     public function run()
     {
 
         if (!$this->isKeyed && !empty($this->json)) {
-            $this->variables = yii\helpers\Json::decode($this->json);
+            $this->variables = Json::decode($this->json);
         }
         if (!$this->isKeyed) {
             $this->labels = false;
@@ -91,7 +92,7 @@ class JsonForm extends Widget
             $this->variables = [$this->variables=>[
                 'label'=>$this->variables,
             ]];
-            $values = yii\helpers\Json::decode($this->json);
+            $values = Json::decode($this->json);
             if($values) {
                 $this->values = $values;
             }

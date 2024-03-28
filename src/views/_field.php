@@ -7,13 +7,15 @@ use kartik\password\PasswordInput;
 use kartik\date\DatePicker;
 use \kartik\datetime\DateTimePicker;
 
-/* @var JsonForm $widget */
-/* @var View $this */
-/* @var string $id */
-/* @var string $type */
-/* @var string $value */
-/* @var string $label */
-/* @var array $options */
+/** @var JsonForm $widget */
+/** @var View $this */
+/** @var string $id */
+/** @var string $type */
+/** @var string $value */
+/** @var string $label */
+/** @var array $select */
+/** @var array $options */
+/** @var array $pluginOptions */
 
 $buttonsWidth = 12 - $widget->contentWidth;
 ?>
@@ -51,6 +53,15 @@ $buttonsWidth = 12 - $widget->contentWidth;
                 'type' => DateTimePicker::TYPE_COMPONENT_PREPEND,
                 'pluginOptions' => $options,
             ]); ?>
+        <?php elseif ($type == JsonForm::TYPE_SELECT2): ?>
+            <?= \kartik\select2\Select2::widget([
+                'id' => $id,
+                'name' => $id,
+                'data' => $select,
+                'options' => $options,
+                'pluginOptions' => $pluginOptions
+            ]
+            ); ?>
         <?php else: ?>
             <?= Html::input('text', Html::encode($id), Html::encode($value), $options) ?>
         <?php endif; ?>
