@@ -14,21 +14,12 @@ use \kartik\datetime\DateTimePicker;
 /** @var string $value */
 /** @var string $label */
 /** @var array $select */
-/** @var array $options */
+/** @var array $inputOptions */
 /** @var array $pluginOptions */
 
 $buttonsWidth = 12 - $widget->contentWidth;
 
 
-if(!isset($options["class"])) {
-    $options['class'] = "values";
-} else {
-    $classPieces = explode($options['class'], " ");
-    if(!in_array($classPieces, "values")) {
-        $classPieces[] = "values";
-    }
-    $options['class'] = implode(" ", $classPieces);
-}
 ?>
 
 <div class="form-group row json-form-row <?=($widget->isHorizontal ? "form-horizontal" : null)?> container">
@@ -46,7 +37,7 @@ if(!isset($options["class"])) {
                 'id' => $id,
                 'name' => $id,
                 'value' => $value,
-                'options' => $options,
+                'options' => $inputOptions,
             ]); ?>
         <?php elseif ($type == JsonForm::TYPE_DATE): ?>
             <?= DatePicker::widget([
@@ -54,6 +45,7 @@ if(!isset($options["class"])) {
                 'name' => $id,
                 'value' => $value,
                 'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                'options' => $inputOptions,
                 'pluginOptions' => $pluginOptions,
             ]); ?>
         <?php elseif ($type == JsonForm::TYPE_DATETIME): ?>
@@ -62,6 +54,7 @@ if(!isset($options["class"])) {
                 'name' => $id,
                 'value' => $value,
                 'type' => DateTimePicker::TYPE_COMPONENT_PREPEND,
+                'options' => $inputOptions,
                 'pluginOptions' => $pluginOptions,
             ]); ?>
         <?php elseif ($type == JsonForm::TYPE_SELECT2): ?>
@@ -70,12 +63,12 @@ if(!isset($options["class"])) {
                 'name' => $id,
                 'value' => $value,
                 'data' => $select,
-                'options' => $options,
+                'options' => $inputOptions,
                 'pluginOptions' => $pluginOptions
             ]
             ); ?>
         <?php else: ?>
-            <?= Html::input('text', Html::encode($id), Html::encode($value), $options) ?>
+            <?= Html::input('text', Html::encode($id), Html::encode($value), $inputOptions) ?>
         <?php endif; ?>
     </div>
 

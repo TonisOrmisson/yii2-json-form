@@ -100,11 +100,23 @@ JS
                 $label = "";
             }
             $select = $variable['select'] ?? [];
+
             $pluginOptions = $variable['pluginOptions'] ?? [];
-            $options = $variable['options'] ?? [];
 
+            $inputOptions = [
+                'id' => $id,
+                'class' =>"form-control values"
+            ];
+            if(isset($variable['options']) && isset( $variable['options']['class'])) {
+                // append, must keep ours
+                $variable['options']['class'] = $inputOptions['class']. " ". $variable['options']['class'];
+                unset($variable['options']['class']);
+            }
+            if(!empty($variable['options']) && is_array($variable['options'])) {
+                $inputOptions = array_merge($inputOptions, $variable['options']);
+            }
 
-            if(empty($pluginOptions)) {
+            if(empty($inputOptions)) {
                 $pluginOptions['id'] = $id;
                 // old config
                 if (isset($variable['options'])) {
@@ -129,7 +141,7 @@ JS
                 'id' => $id,
                 'label' => $label,
                 'value' => $value,
-                'options' => $options,
+                'inputOptions' => $inputOptions,
                 'select' => $select,
                 'pluginOptions' => $pluginOptions,
             ]); ?>
