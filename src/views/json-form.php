@@ -116,15 +116,6 @@ JS
                 $inputOptions = array_merge($inputOptions, $variable['options']);
             }
 
-            if(empty($inputOptions)) {
-                $pluginOptions['id'] = $id;
-                // old config
-                if (isset($variable['options'])) {
-                    $pluginOptions = array_merge($pluginOptions, $variable['options']);
-                }
-                $pluginOptions['class'] = "form-control values";
-            }
-
 
             $value = (isset($currentData[$id]) ? $currentData[$id] : null);
             $type = (isset($variable['type']) ? $variable['type'] : null);
