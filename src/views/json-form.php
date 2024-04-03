@@ -21,15 +21,14 @@ $this->registerJs(<<<JS
         let optionsArray = $ids;
         let id = '$widget->id';
         let rowClass = '.json-form-row';
+        let isKeyed =  $isKeyed;
 
-        let variableKey ='$fieldName'; 
-        let valueName = '$widget->fieldName';
         
         let max_fields      = $widget->maxFieldsCount; //maximum input boxes allowed
         let wrapper         = $('#$widget->id');
         
         let x = $('#'+id+' ' + rowClass).length; //initial text box count
-        setOptionsValues('$widget->id',jsonFieldId, optionsArray);
+        setOptionsValues('$widget->id',jsonFieldId, optionsArray, isKeyed);
       
         $(wrapper).on("click",".$widget->id-add", function(e){
             if(x < max_fields){ //max input box allowed
@@ -43,27 +42,26 @@ $this->registerJs(<<<JS
         $(wrapper).on("click",".$widget->id-remove_field", function(){
             $(this).closest(rowClass).remove();
             x--;
-            setOptionsValues('$widget->id',jsonFieldId,optionsArray);
+            setOptionsValues('$widget->id',jsonFieldId,optionsArray,isKeyed);
         });
         
         $(wrapper).on("change",".values", function(e){
-            setOptionsValues('$widget->id',jsonFieldId,optionsArray);
+            setOptionsValues('$widget->id',jsonFieldId,optionsArray,isKeyed);
         });
         
         $(wrapper).on("keyup",".values", function(e){
-            setOptionsValues('$widget->id',jsonFieldId,optionsArray);
+            setOptionsValues('$widget->id',jsonFieldId,optionsArray,isKeyed);
         });
         
         $('body').on("click", function(e){
-            setOptionsValues('$widget->id',jsonFieldId,optionsArray);
+            setOptionsValues('$widget->id',jsonFieldId,optionsArray,isKeyed);
         });
      
 
     }
     
-    function setOptionsValues(id,jsonFieldId,optionsArray) {
+    function setOptionsValues(id,jsonFieldId,optionsArray, isKeyed) {
         let results = {};
-        let isKeyed = $isKeyed;
         if(isKeyed){
             for (i = 0; i < optionsArray.length; i++) {
                 let optionId = optionsArray[i];
@@ -75,7 +73,7 @@ $this->registerJs(<<<JS
         } else{
             results= [];
             $('#'+id+' .values').each(function(){
-                var input = $(this);
+                let input = $(this);
                 results.push(input.val());
                 $("#"+jsonFieldId).val(JSON.stringify(results));
                 

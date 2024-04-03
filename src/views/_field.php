@@ -18,6 +18,17 @@ use \kartik\datetime\DateTimePicker;
 /** @var array $pluginOptions */
 
 $buttonsWidth = 12 - $widget->contentWidth;
+
+
+if(!isset($options["class"])) {
+    $options['class'] = "values";
+} else {
+    $classPieces = explode($options['class'], " ");
+    if(!in_array($classPieces, "values")) {
+        $classPieces[] = "values";
+    }
+    $options['class'] = implode(" ", $classPieces);
+}
 ?>
 
 <div class="form-group row json-form-row <?=($widget->isHorizontal ? "form-horizontal" : null)?> container">
